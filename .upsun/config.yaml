@@ -31,7 +31,7 @@ applications:
       root: "ui"
 
     stack:
-      - "nodejs@22"
+      - "nodejs@20"
     
     web:
       commands:
