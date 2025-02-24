@@ -1,0 +1,56 @@
+applications:
+  api:
+    source:
+      root: "api"
+
+    type: "python:3.11"
+
+    mounts:
+      "__pycache__":
+        source: "storage"
+        source_path: "pycache"
+
+    web:
+      commands:
+        start: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+      upstream:
+        socket_family: http
+      locations:
+        "/":
+          passthru: true
+          
+    hooks:
+      build: |
+        set -eux
+        pip install -r requirements.txt
+      deploy: |
+        set -eux
+      # post_deploy: |
+  ui:
+    source:
+      root: "ui"
+
+    stack:
+      - "nodejs@22"
+    
+    web:
+      commands:
+        start: "http-server dist/ --cors"
+    
+    hooks:
+      build: |
+        set -x -e
+        npm install
+        npm install -g http-server
+        npm run build
+
+routes:
+  "https://api.{default}/":
+    type: upstream
+    upstream: "api:http"
+  "https://{default}/":
+    type: upstream
+    upstream: "ui:http"
+  "https://www.{default}":
+    type: redirect
+    to: "https://{default}/"
