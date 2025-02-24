@@ -14,7 +14,7 @@ applications:
       commands:
         start: "uvicorn main:app --host 0.0.0.0 --port $PORT"
       upstream:
-        socket_family: http
+        socket_family: tcp
       locations:
         "/":
           passthru: true
