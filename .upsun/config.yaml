@@ -9,7 +9,7 @@ applications:
       "__pycache__":
         source: "storage"
         source_path: "pycache"
-      ".cache":
+      ".EasyOCR":
         source: "storage"
         source_path: "ocr"
 
