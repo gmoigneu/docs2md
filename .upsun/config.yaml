@@ -3,6 +3,8 @@ applications:
     source:
       root: "api"
 
+    container_profile: HIGH_MEMORY
+
     type: "python:3.11"
 
     mounts:
