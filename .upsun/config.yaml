@@ -27,12 +27,10 @@ applications:
         set -eux
       # post_deploy: |
   ui:
+    type: "nodejs:20"
     source:
       root: "ui"
 
-    stack:
-      - "nodejs@20"
-    
     web:
       commands:
         start: "http-server dist/ --cors"
