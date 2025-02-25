@@ -9,6 +9,9 @@ applications:
       "__pycache__":
         source: "storage"
         source_path: "pycache"
+      ".cache":
+        source: "storage"
+        source_path: "ocr"
 
     web:
       commands:
