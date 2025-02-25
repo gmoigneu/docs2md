@@ -14,6 +14,9 @@ applications:
       ".EasyOCR":
         source: "storage"
         source_path: "ocr"
+      ".cache":
+        source: "storage"
+        source_path: "cache"
 
     web:
       commands:
